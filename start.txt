@@ -1,0 +1,9 @@
+page routing,page dynamic routing using []  --> "params" contains the dynamic values from the URL.
+when using Image tag from next if we reduce the size of the picture the memory will also be reduced
+axios --> server setup
+toastify --> toast notification
+
+
+
+
+pxQszkmSz3CgvZ1K
