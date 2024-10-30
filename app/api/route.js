@@ -7,7 +7,8 @@ const LoadDB = async () =>{
 LoadDB();
 export async function GET(request){
     await ConnectDB();
-    return NextResponse.json({msg:"get method hit"})
+    const todos = await TodoModel.find({});
+    return NextResponse.json({todos:todos})
 }
 
 export async function POST(request){
@@ -17,4 +18,21 @@ export async function POST(request){
         title,description
     })
     return NextResponse.json({msg:"todo created"})
+}
+export async function DELETE(request){
+    await ConnectDB();
+    const mongoId = await request.nextUrl.searchParams.get('mongoId');
+    await TodoModel.findByIdAndDelete(mongoId);
+    return NextResponse.json({msg:"todo deleted"})
+}
+
+export async function PUT(request){
+    await ConnectDB();
+    const mongoId = await request.nextUrl.searchParams.get('mongoId');
+    await TodoModel.findByIdAndUpdate(mongoId,{
+        $set:{
+            isCompleted:true
+        }
+    });
+    return NextResponse.json({msg:"todo updated"})
 }
